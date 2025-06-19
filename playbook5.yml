@@ -1,0 +1,20 @@
+---
+ - name: craeting user and copy password and changing group and owner
+   hosts: all
+   tasks: 
+     - name: craete a user
+       user:
+         name: saiteja2
+         password: saiteja2
+         uid: 1008
+         home: /tmp/saiteja2
+         shell: /bin/bash
+         comment: " a worst user"
+     - name: copying password and changing group and owner
+       copy:
+         src: /etc/passwd
+         dest: /tmp/saiteja2
+         group: sai
+         owner: teja
+...           
+         

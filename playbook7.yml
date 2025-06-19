@@ -1,0 +1,26 @@
+---
+ - name: configuring apache2
+   hosts: all
+   tasks: 
+     - name: installing apache2
+       apt: 
+         name: apache2
+         state: present
+         update_cache: yes
+     - name: edit the apache index
+       copy: 
+         content: "welcome to apache saiteja" 
+         dest: /var/www/html/index.html
+     - name: restarting the apache
+       service: 
+         name: apache2
+         state: restarted
+     - name: cheching the uri response on server1
+       uri:
+         url: http://172.31.7.229
+         status_code: 200
+     - name: check the uri response on server2
+       uri: 
+         url: http://172.31.14.37
+         status_code: 200
+...
